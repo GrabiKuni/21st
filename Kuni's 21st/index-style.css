@@ -1,0 +1,67 @@
+    body {
+        background: linear-gradient(to bottom, #1e3a8a, #0d1b2a); /* Dark blue gradient */
+        color: white; /* Ensure text is white on dark background */
+        background-repeat: no-repeat; /* Prevent background from repeating */
+        background-size: cover; /* Ensure the background covers the entire page */
+        height: 100vh; /* Ensure the body takes the full height of the viewport */
+    }
+
+    .navbar {
+        background-color: #1e3a8a; /* Darker blue for navbar */
+    }
+
+    .nav-tabs .nav-link {
+        color: white; /* Ensures text is readable */
+    }
+
+    .nav-tabs .nav-link.active {
+        background-color: #0d1b2a; /* Darker shade for active link */
+    }
+
+    .card {
+        background-color: #1e3a8a; /* Card background matches navbar */
+        height: 100%; /* Ensures card height is the same */
+        display: flex; /* Makes sure all cards have the same height */
+        flex-direction: column; /* Ensures cards stack vertically */
+    }
+
+    .card-body {
+        color: white; /* Ensure text in cards is white for contrast */
+        flex-grow: 1; /* Allow the card body to expand and take remaining space */
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+    }
+
+    img.img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .rotate-icon, .rotate-icon1, .rotate-icon2 {
+        transition: transform 0.1s ease;
+    }
+
+    .rotate-icon:hover, .rotate-icon1:hover, .rotate-icon2:hover {
+        transform: rotate(270deg);
+    }
+
+    /* Hover Effect for Cards */
+    .card-hover:hover {
+        box-shadow: 0px 0px 15px 0px rgb(0, 119, 255);
+        border-radius: 10px;
+    }
+
+    /* Additional hover effects for cards */
+    .bg-danger{
+        border: solid 1px;
+        border-radius: 10px;
+        text-decoration: none;
+    }
+
+    .bg-danger:hover{
+        box-shadow: 0px 0px 10px 0px rgb(255, 196, 196);
+        background-color: rgb(209, 120, 120);
+    }

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Impact Simulation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+        .simulation-container {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            background-color: #87CEEB; /* Sky blue */
+            overflow: hidden;
+            margin-top: 50px;
+        }
+        .building {
+            position: absolute;
+            bottom: 0;
+            width: 100px;
+            height: 400px;
+            background-color: #888;
+            border: 2px solid #333;
+        }
+        .building1 {
+            left: 40%; /* Position the first building */
+        }
+        .building2 {
+            left: 55%; /* Position the second building next to the first one */
+        }
+        .plane {
+            position: absolute;
+            top: 150px; /* Start the plane in the middle vertically */
+            left: -50px; /* Start the plane off-screen on the left */
+            font-size: 50px;
+            color: #FFD700; /* Plane color */
+            transition: left 3s ease-in-out, transform 3s ease-in-out; /* Add rotation during the movement */
+        }
+        .explosion {
+            display: none;
+            position: absolute;
+            top: 200px;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            background-color: #ff0000;
+            border-radius: 50%;
+            animation: explode 1s forwards;
+        }
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(10);
+                opacity: 0;
+            }
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #444;
+        }
+        .replay-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2e8b57;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .replay-button:hover {
+            background-color: #3cb371;
+        }
+        .link-container {
+            margin-top: 20px;
+        }
+        .link-container a {
+            font-size: 1.2em;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .link-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Building Impact Simulation</h1>
+    <p>Learn about building structures and how they are designed to withstand impacts.</p>
+
+    <div class="simulation-container">
+        <div class="building building1"></div>
+        <div class="building building2"></div>
+        <div class="plane">
+            <i class="bi bi-airplane-engines"></i> <!-- Bootstrap plane icon -->
+        </div>
+        <div class="explosion"></div>
+    </div>
+
+    <div class="message">
+        <p>Click the button below to simulate a plane impact and learn how structural design and materials have evolved to prevent disasters.</p>
+    </div>
+
+    <button class="replay-button" onclick="startSimulation()">Start Simulation</button>
+
+    <div class="link-container" style="display: none;">
+        <a href="#" target="_blank"></a>
+    </div>
+
+    <script>
+        let plane = document.querySelector('.plane');
+        let explosion = document.querySelector('.explosion');
+        let replayButton = document.querySelector('.replay-button');
+        let linkContainer = document.querySelector('.link-container');
+        
+        // Start the simulation
+        function startSimulation() {
+    // Reset everything
+    explosion.style.display = 'none';
+    plane.style.left = '-50px'; // Start the plane off-screen on the left
+    plane.style.transform = 'rotate(0deg)'; // Reset rotation
+
+    // After a delay, move the plane and rotate it
+    setTimeout(() => {
+        plane.style.transition = 'left 3s ease-in-out, transform 3s ease-in-out'; // Enable both left movement and rotation
+        plane.style.left = '50%'; // Plane moving towards the buildings
+        plane.style.transform = 'rotate(90deg)'; // Rotate the plane while moving
+    }, 100);
+
+    // Show explosion and display educational message after plane hits
+    setTimeout(() => {
+        explosion.style.display = 'block';
+        displayMessage();
+        // Automatically redirect to a new page after the explosion
+        setTimeout(() => {
+            window.location.href = "https://www.youtube.com/embed/LsGcIkevyHM?start=9&autoplay=1";
+ // Redirect to a new page (change URL as needed)
+        }, 0); // Delay redirect by 3 seconds to match the explosion
+    }, 3000); // Explosion after 3 seconds (impact time)
+}
+
+        // Display the educational message after the simulation
+        function displayMessage() {
+            // Educational content after impact
+            let messageContent = `
+                <strong>The End of the Simulation</strong><br>
+                This simulation demonstrates the importance of building design and structural integrity. After major incidents in history, engineers and architects have worked together to develop materials and systems that prevent catastrophic failures in buildings.
+                <br><br>
+                Key takeaways:
+                <ul>
+                    <li>Buildings are designed with fire-resistant materials to delay collapse.</li>
+                    <li>Reinforced steel and improved structural designs help withstand impacts.</li>
+                    <li>Safety codes have been updated to ensure the protection of occupants during emergencies.</li>
+                </ul>
+                Building codes continue to evolve in response to lessons learned from events like this.
+            `;
+            let messageContainer = document.querySelector('.message');
+            messageContainer.innerHTML = messageContent;
+            replayButton.style.display = 'block'; // Show the replay button
+
+            // Show the link to the new page
+            linkContainer.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
